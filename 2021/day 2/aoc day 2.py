@@ -1,3 +1,4 @@
+# day 2
 with open('input.txt') as f:
     data = f.read().split('\n')
 
