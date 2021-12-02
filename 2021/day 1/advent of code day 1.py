@@ -1,5 +1,4 @@
-with open("input.txt") as f:
-    data = f.read()
+
     
 with open("input.txt") as f:
     depths = list(map(int, f.readlines()))
