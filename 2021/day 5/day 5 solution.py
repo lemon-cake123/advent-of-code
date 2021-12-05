@@ -12,7 +12,7 @@ def solve(part=1):
     for x1, y1, x2, y2 in data:
         dx, dy = sign(x2 - x1), sign(y2 - y1)
         if part == 1:
-            if dx and dy: continue  # comment this line out and rerun to solve part 2
+            if dx and dy: continue 
         
         x, y = x1, y1
         while x != x2 or y != y2:
