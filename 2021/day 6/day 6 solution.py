@@ -1,8 +1,9 @@
 import collections
 import numpy as np
 
+
 def nfish(days):
-    c = collections.Counter([eval(x)for x in open('input.txt')][0])
+    c = collections.Counter([eval(x) for x in open('input.txt')][0])
     for day in range(days-1):
         c2=collections.Counter()
         for k,v in c.items():
