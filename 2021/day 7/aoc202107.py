@@ -5,13 +5,7 @@ so some days may not use this template
 '''
 import pathlib
 import sys
-
-def parse(puzzle_input):
-    """Parse input"""
-    return [int(data) for data in puzzle_input.split(',')]
-
-def part1(data):
-    """Solve part 1"""
+def nFuel(data,add_fuel = False):
     fuel = []
     current_fuel = 0
     possible_alingn = list(range(0,max(data) + 1))
@@ -21,11 +15,21 @@ def part1(data):
         for crab_pos in data:
             #print((pos,crab_pos))
             if pos < crab_pos:
-                current_fuel += crab_pos - pos
-                #print((pos,crab_pos,crab_pos - pos))
+                if not add_fuel:
+                    current_fuel += crab_pos - pos
+                    #print((pos,crab_pos,crab_pos - pos))
+                else:
+                     
+                     range_needed = crab_pos - pos
+                     current_fuel += sum(range(1,range_needed + 1))
                 
             else:
-                current_fuel += pos - crab_pos
+                if not add_fuel:
+                    current_fuel += pos - crab_pos
+                else:
+                    range_needed = pos - crab_pos
+                    current_fuel += sum(range(1,range_needed + 1))
+                    
                 #print((pos,crab_pos,pos - crab_pos))
                 
         #print(current_fuel)
@@ -35,6 +39,14 @@ def part1(data):
     #print(min(fuel))
     #print(fuel)
     return min(fuel)
+
+def parse(puzzle_input):
+    """Parse input"""
+    return [int(data) for data in puzzle_input.split(',')]
+
+def part1(data):
+    """Solve part 1"""
+    return nFuel(data)
         
 
 
@@ -42,35 +54,7 @@ def part1(data):
 
 def part2(data):
     """Solve part 2"""
-    current_fuel = 0
-    fuel = []
-    possible_alingn = list(range(0,max(data) + 1))
-    for pos in possible_alingn:
-        current_fuel = 0
-        for crab_pos in data:
-            #print((pos,crab_pos))
-            if pos < crab_pos:
-                range_needed = crab_pos - pos
-                current_fuel += sum(range(1,range_needed + 1))
-                #print((pos,sum(range(1,range_needed)),range_needed))
-                
-                #print((pos,crab_pos,crab_pos - pos))
-                
-            else:
-                range_needed = pos - crab_pos
-                current_fuel += sum(range(1,range_needed + 1))
-                
-                #print((pos,sum(range(1,range_needed)),range_needed))
-                
-                #print((pos,crab_pos,pos - crab_pos))
-                
-        #print(current_fuel)
-                
-        fuel.append(current_fuel)
-    
-    #print(min(fuel))
-    #print(fuel)
-    return min(fuel)
+    return nFuel(data,True)
     
 
 def solve(puzzle_input):
